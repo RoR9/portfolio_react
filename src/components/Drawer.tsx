@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { menuItems } from "../constants";
 import close from "../../public/close.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type Props = {
   isOpen: boolean;
@@ -9,7 +9,26 @@ type Props = {
 };
 
 const Drawer: React.FC<Props> = ({ isOpen, onClose }) => {
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("Home");
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const el = drawerRef.current;
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && target.className.includes("drawer-left-side")) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      el?.addEventListener("click", handleClick);
+    }
+
+    return () => {
+      el?.removeEventListener("click", handleClick);
+    };
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     // Function to handle scroll event
@@ -41,8 +60,11 @@ const Drawer: React.FC<Props> = ({ isOpen, onClose }) => {
   }, []);
 
   return isOpen ? (
-    <div className="w-[100vw] h-[100vh] drawer-container  flex-1 z-10 flex absolute inset-0 top-[-20px]">
-      <div className="flex-1"></div>
+    <div
+      ref={drawerRef}
+      className="w-[100vw] h-[100vh] drawer-container  flex-1 z-10 flex absolute inset-0 top-[-20px] "
+    >
+      <div className="flex-1 drawer-left-side"></div>
       <motion.div
         initial={{ translateX: 120, width: 0 }}
         animate={{ translateX: 0, width: 200 }}
