@@ -13,6 +13,7 @@ const Footer = () => {
       variants={footerVariants}
       initial="hidden"
       whileInView="show"
+      viewport={{ once: true }}
       className={`${styles.paddings} py-8 relative`}
     >
       <div className="footer-gradient" />

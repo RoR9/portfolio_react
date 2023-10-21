@@ -1,15 +1,20 @@
+import { AiFillHome, AiFillMail, AiFillCode } from "react-icons/ai";
+
 export const menuItems = [
   {
     title: "Home",
     href: "#home",
+    icon: <AiFillHome />,
   },
   {
     title: "Projects",
     href: "#projects",
+    icon: <AiFillCode />,
   },
   {
     title: "Contact",
     href: "#contact",
+    icon: <AiFillMail />,
   },
 ];
 
