@@ -64,12 +64,8 @@ export const projectItems = [
 
 export const socials = [
   {
-    name: "facebook",
-    url: "#",
-  },
-  {
     name: "linkedin",
-    url: "",
+    url: "https://md.linkedin.com/in/valeriu-verebceanu-a9a213272",
   },
   {
     name: "codewars",
