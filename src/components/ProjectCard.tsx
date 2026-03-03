@@ -78,8 +78,9 @@ const ProjectCard: React.FC<Props> = ({
               className="absolute inset-0 w-full h-full object-cover"
             onError={() => setLogoError(true)}
           />
-
-          <h3 className="absolute bottom-10 left-0 right-0 z-[1] overflow-hidden text-ellipsis font-semibold text-[16px]  text-white drop-shadow-lg lg:max-h-none text-center lg:rotate-[-90deg] lg:translate-y-0 lg:text-[22px]">
+            {/* Mobile: slight dark overlay so white title is readable */}
+            <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none lg:hidden" aria-hidden />
+            <h3 className="absolute bottom-10 left-0 right-0 z-[1] overflow-hidden text-ellipsis font-semibold text-[16px] text-white drop-shadow-lg lg:max-h-none text-center lg:rotate-[-90deg] lg:translate-y-0 lg:text-[22px]">
             {title}
           </h3>
 
@@ -87,6 +88,8 @@ const ProjectCard: React.FC<Props> = ({
       ) : (
         <>
               <div className={`absolute inset-0 bg-gradient-to-br ${accent ?? "from-slate-800 to-slate-900"}`} aria-hidden />
+              {/* Mobile: slight dark overlay so white title is readable */}
+              <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none lg:hidden" aria-hidden />
           {techStack[0] && (
             <div className="absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white/10 p-4">
               <StackIcon name={techStack[0]} className="w-16 h-16 sm:w-20 sm:h-20 text-white/95" />
@@ -134,15 +137,20 @@ const ProjectCard: React.FC<Props> = ({
                 </a>
               )}
             </div>
-            <div
-              className={`${styles.flexCenter} w-[50px] md:w-[60px] h-[50px] md:h-[60px] rounded-[24px] glassmorphism mb-[16px] cursor-pointer`}
+            <button
+              type="button"
+              className={`${styles.flexCenter} w-[50px] md:w-[60px] h-[50px] md:h-[60px] rounded-[24px] glassmorphism mb-[16px] cursor-pointer touch-manipulation border-0 p-0`}
               onMouseEnter={() => setState("stack")}
               onMouseLeave={() => setState("")}
-              role="img"
-              aria-label="Tech stack"
+              onClick={(e) => {
+                e.stopPropagation();
+                setState((prev) => (prev === "stack" ? "" : "stack"));
+              }}
+              aria-label="Toggle tech stack"
+              aria-pressed={state === "stack"}
             >
               <BsStack className="w-1/2 h-1/2 object-contain text-white" />
-            </div>
+            </button>
           </div>
           <div className="md:h-[50px] h-[25px] min-h-[25px]">
             {state ? (
