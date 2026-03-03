@@ -1,5 +1,7 @@
 import { AiFillHome, AiFillMail, AiFillCode } from "react-icons/ai";
 
+const base = import.meta.env.BASE_URL;
+
 export const menuItems = [
   {
     title: "Home",
@@ -21,8 +23,8 @@ export const menuItems = [
 export const projectItems = [
   {
     id: "world-1",
-    imgUrl: "/dendent.webp",
-    logoUrl: "/dendent-card.png",
+    imgUrl: `${base}dendent.webp`,
+    logoUrl: `${base}dendent-card.png`,
     accent: "from-emerald-900/80 to-teal-900/90",
     title: "DenDent Distribution",
     description:
@@ -32,8 +34,8 @@ export const projectItems = [
   },
   {
     id: "world-2",
-    imgUrl: "/auto-docs.webp",
-    logoUrl: "/auto-docs-card.png",
+    imgUrl: `${base}auto-docs.webp`,
+    logoUrl: `${base}auto-docs-card.png`,
     accent: "from-sky-900/80 to-indigo-900/90",
     title: "Vehicle Documents Manager",
     description:
@@ -44,8 +46,8 @@ export const projectItems = [
   },
   {
     id: "world-3",
-    imgUrl: "/poker-plan.webp",
-    logoUrl: "/planning-poker-card.png",
+    imgUrl: `${base}poker-plan.webp`,
+    logoUrl: `${base}planning-poker-card.png`,
     accent: "from-rose-900/80 to-amber-900/70",
     title: "Planning Poker",
     description:

@@ -89,7 +89,7 @@ const Drawer: React.FC<Props> = ({ isOpen, onClose }) => {
                 className="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#0d2020] transition-colors"
                 aria-label="Close menu"
               >
-                <img src="/close.svg" alt="" className="w-6 h-6 pointer-events-none" />
+                <img src={`${import.meta.env.BASE_URL}close.svg`} alt="" className="w-6 h-6 pointer-events-none" />
               </button>
             </div>
             <nav className="flex-1 overflow-auto py-4">

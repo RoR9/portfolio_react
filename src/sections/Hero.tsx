@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
         className="min-h-[95vh] w-full relative flex flex-col z-0"
       >
         <div className="absolute inset-0 w-full z-[-1]">
-          <img src="/react-blogpost-min.webp" alt="" className="w-full object-cover h-full" aria-hidden />
+          <img src={`${import.meta.env.BASE_URL}react-blogpost-min.webp`} alt="" className="w-full object-cover h-full" aria-hidden />
           <div className="absolute inset-0 bg-[#0d2020]/75" aria-hidden />
         </div>
         <motion.div

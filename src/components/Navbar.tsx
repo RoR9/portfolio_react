@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         </ul>
         <div className="flex flex-1 justify-end items-center sm:hidden">
           <img
-            src="/menu.svg"
+            src={`${import.meta.env.BASE_URL}menu.svg`}
             alt="menu"
             className={`w-[28px] h-[28px] object-contain ${toggle ? "hidden" : ""}`}
             onClick={() => setToggle((prevToggle) => !prevToggle)}
