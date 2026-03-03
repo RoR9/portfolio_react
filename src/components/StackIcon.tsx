@@ -12,6 +12,17 @@ import {
   SiCodewars,
   SiFacebook,
   SiGithub,
+  SiMongodb,
+  SiNodedotjs,
+  SiTrpc,
+  SiSocketdotio,
+  SiExpress,
+  SiPayloadcms,
+  SiRadixui,
+  SiSentry,
+  SiTypescript,
+  SiZod,
+  SiReactquery,
 } from "react-icons/si";
 
 export type Icon =
@@ -24,6 +35,17 @@ export type Icon =
   | "vite"
   | "tailwind"
   | "sanity"
+  | "mongodb"
+  | "node"
+  | "trpc"
+  | "socketio"
+  | "express"
+  | "payload"
+  | "radix"
+  | "sentry"
+  | "typescript"
+  | "zod"
+  | "reactquery"
   | "facebook"
   | "codewars"
   | "linkedin"
@@ -57,6 +79,28 @@ const StackIcon: React.FC<Props> = ({
       return <SiTailwindcss className={className} />;
     case "sanity":
       return <SiSanity className={className} />;
+    case "mongodb":
+      return <SiMongodb className={className} />;
+    case "node":
+      return <SiNodedotjs className={className} />;
+    case "trpc":
+      return <SiTrpc className={className} />;
+    case "socketio":
+      return <SiSocketdotio className={className} />;
+    case "express":
+      return <SiExpress className={className} />;
+    case "payload":
+      return <SiPayloadcms className={className} />;
+    case "radix":
+      return <SiRadixui className={className} />;
+    case "sentry":
+      return <SiSentry className={className} />;
+    case "typescript":
+      return <SiTypescript className={className} />;
+    case "zod":
+      return <SiZod className={className} />;
+    case "reactquery":
+      return <SiReactquery className={className} />;
     case "facebook":
       return <SiFacebook className={className} />;
     case "codewars":

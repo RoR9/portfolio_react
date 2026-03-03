@@ -21,44 +21,38 @@ export const menuItems = [
 export const projectItems = [
   {
     id: "world-1",
-    imgUrl: "random-quote-machine.png",
-    title: "Random Quote Machine",
+    imgUrl: "/dendent.webp",
+    logoUrl: "/dendent-card.png",
+    accent: "from-emerald-900/80 to-teal-900/90",
+    title: "DenDent Distribution",
     description:
-      "A project centered on the creation of a daily source of motivation and inspiration.This project aims to provide users with randomly selected quote to inspire and motivate them",
-    live: "https://ror9.github.io/Random-Quote-Machine/",
-    source_code: "https://github.com/RoR9/Random-Quote-Machine",
-    tech_stack: ["html", "css", "js"],
+      "B2C e-commerce and product catalog for dental labs and practices. Browse consumables — discs, brushes, abrasive stones, mandrels, polish — by Lab or Cabinet. Filter by price, manufacturer, and material to find the right products quickly.",
+    live: "https://dendentdistribution.ro",
+    tech_stack: ["react", "next", "trpc", "mongodb", "payload", "tailwind", "zod"],
   },
   {
     id: "world-2",
-    imgUrl: "YDT-min.png",
-    title: "Daunku",
+    imgUrl: "/auto-docs.webp",
+    logoUrl: "/auto-docs-card.png",
+    accent: "from-sky-900/80 to-indigo-900/90",
+    title: "Vehicle Documents Manager",
     description:
-      "This project aims to leverage the capabilities of Figma to create a visually appealing and user-friendly static website.",
-    live: "https://ror9.github.io/YDT/",
-    source_code: "https://github.com/RoR9/YDT",
-    tech_stack: ["html", "sass", "js"],
+      "Track your car’s documents in one place: technical inspection (ITP), insurance (RCA), and rovinietă (road tax). Get expiry reminders and an optional daily email so you never miss a renewal. Dashboard with per-vehicle editing and secure login.",
+    live: "https://edw-seven.vercel.app/sign-in?demo=true",
+    source_code: "https://github.com/RoR9/edw",
+    tech_stack: ["react", "next", "mongodb", "tailwind", "zod", "node"],
   },
   {
     id: "world-3",
-    imgUrl: "e-next2.png",
-    title: "E-Next",
+    imgUrl: "/poker-plan.webp",
+    logoUrl: "/planning-poker-card.png",
+    accent: "from-rose-900/80 to-amber-900/70",
+    title: "Planning Poker",
     description:
-      "An Ecommerce Platform with Features Including Product Listing, Detailed Product Descriptions, Cart Management, and Checkout Process",
-    live: "https://e-next-ror9.vercel.app/",
-    source_code: "https://github.com/RoR9/e-next",
-    tech_stack: ["react", "next", "sanity"],
-  },
-
-  {
-    id: "world-4",
-    imgUrl: "tailwind.png",
-    title: "Hoo Bank",
-    description:
-      "This project is focused on the development of a responsive website design using Figma. It will be optimized for various screen sizes and devices, including computers, tablets, and smartphones",
-    live: "https://ror9.github.io/tailwind/",
-    source_code: "https://github.com/RoR9/tailwind",
-    tech_stack: ["react", "vite", "tailwind"],
+      "Run story-point estimation with your team in real time. Create a session, share the link, and everyone votes on backlog items. Reveal when ready and see consensus at a glance. Works for remote or in-person agile teams, no sign-up to join.",
+    live: "https://plan-poker-sooty.vercel.app/",
+    source_code: "https://github.com/RoR9/planning-poker",
+    tech_stack: ["react", "vite", "tailwind", "socketio", "typescript", "node"],
   },
 ];
 

@@ -9,7 +9,6 @@ import { ThemeProvider } from "@material-tailwind/react";
 function App() {
   return (
     <ThemeProvider>
-      <meta title="Portfolio - RoR9" />
       <Navbar />
       <Hero />
       <Projects />

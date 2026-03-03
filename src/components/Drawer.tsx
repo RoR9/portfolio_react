@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { menuItems } from "../constants";
-import close from "../../public/close.svg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   isOpen: boolean;
@@ -10,31 +10,11 @@ type Props = {
 
 const Drawer: React.FC<Props> = ({ isOpen, onClose }) => {
   const [activeSection, setActiveSection] = useState("Home");
-  const drawerRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const el = drawerRef.current;
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target && target.className.includes("drawer-left-side")) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      el?.addEventListener("click", handleClick);
-    }
-
-    return () => {
-      el?.removeEventListener("click", handleClick);
-    };
-  }, [isOpen, onClose]);
-
-  useEffect(() => {
-    // Function to handle scroll event
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      // Adjust the thresholds for each section as needed
       const section1Top = document.getElementById("home")?.offsetTop ?? 0;
       const section2Top = document.getElementById("projects")?.offsetTop ?? 0;
       const section3Top = document.getElementById("contact")?.offsetTop ?? 0;
@@ -50,48 +30,97 @@ const Drawer: React.FC<Props> = ({ isOpen, onClose }) => {
       }
     };
 
-    // Attach the scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return isOpen ? (
-    <div
-      ref={drawerRef}
-      className="w-[100vw] h-[100vh] drawer-container  flex-1 z-10 flex absolute inset-0 top-[-20px] "
-    >
-      <div className="flex-1 drawer-left-side"></div>
-      <motion.div
-        initial={{ translateX: 120, width: 0 }}
-        animate={{ translateX: 0, width: 200 }}
-        transition={{ duration: 1 }}
-        className=" overflow-hidden drawer h-full relative z-20"
-      >
-        <div className="flex justify-end p-5">
-          <img src={close} alt="menu" className="w-[28px] h-[28px] object-contain p-1" onClick={onClose} />
-        </div>
-        <ul className="list-none flex-1  justify-start">
-          {menuItems.map((nav, index) => (
-            <li
-              key={index}
-              className={`font-poppins font-normal cursor-pointer text-[26px] flex px-5 items-center gap-4 ${
-                nav.title === activeSection ? "text-lime-700" : "text-white"
-              } `}
-            >
-              {nav.icon}
-              <a onClick={onClose} href={`${nav.href}`}>
-                {nav.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
-    </div>
-  ) : null;
+  useEffect(() => {
+    if (isOpen) {
+      const id = requestAnimationFrame(() => {
+        closeButtonRef.current?.focus();
+      });
+      return () => cancelAnimationFrame(id);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleEscape);
+    }
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
+
+  const drawerContent = (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          key="drawer"
+          className="fixed inset-0 z-[100] flex flex-row"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          role="dialog"
+          aria-modal
+          aria-label="Navigation menu"
+        >
+          {/* Backdrop - tap to close */}
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={onClose}
+            aria-hidden
+          />
+          {/* Panel - slides in from right */}
+          <motion.div
+            className="absolute right-0 top-0 bottom-0 w-[280px] max-w-[85vw] bg-[#0d2020] shadow-xl flex flex-col overflow-hidden"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
+          >
+            <div className="flex justify-end items-center p-4 border-b border-white/10 shrink-0">
+              <button
+                ref={closeButtonRef}
+                type="button"
+                onClick={onClose}
+                className="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-[#0d2020] transition-colors"
+                aria-label="Close menu"
+              >
+                <img src="/close.svg" alt="" className="w-6 h-6 pointer-events-none" />
+              </button>
+            </div>
+            <nav className="flex-1 overflow-auto py-4">
+              <ul className="list-none flex flex-col">
+                {menuItems.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={onClose}
+                      className={`flex items-center gap-4 px-5 py-4 text-lg font-medium transition-colors min-h-[48px] ${
+                        activeSection === item.title
+                          ? "text-lime-400 bg-white/5"
+                          : "text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <span className="text-xl text-white/80" aria-hidden>
+                        {item.icon}
+                      </span>
+                      {item.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
+  return createPortal(drawerContent, document.body);
 };
 
 export default Drawer;
