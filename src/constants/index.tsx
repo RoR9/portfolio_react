@@ -56,6 +56,17 @@ export const projectItems = [
     source_code: "https://github.com/RoR9/planning-poker",
     tech_stack: ["react", "vite", "tailwind", "socketio", "typescript", "node"],
   },
+  {
+    id: "world-4",
+    imgUrl: `${base}avicola-savinesti.webp`,
+    logoUrl: `${base}avicola-card.png`,
+    accent: "from-lime-950/80 to-amber-900/90",
+    title: "Avicola Săvinești",
+    description:
+      "Marketing site for a free-range poultry farm in Manasia, Ialomița. Present breeds, farm story, and direct-from-producer ordering — phone, email, and Messenger — with local delivery context for nearby cities.",
+    live: "https://avicola-savinesti.vercel.app/",
+    tech_stack: ["react", "next", "tailwind", "typescript"],
+  },
 ];
 
 export const socials = [

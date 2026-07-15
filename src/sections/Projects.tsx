@@ -8,7 +8,7 @@ import ProjectCard from "../components/ProjectCard";
 import type { Icon } from "../components/StackIcon";
 
 const Projects: React.FC = () => {
-  const [active, setActive] = useState("world-1");
+  const [active, setActive] = useState(projectItems[0].id);
   return (
     <section id="projects" className={`${styles.paddings} `}>
       <motion.div
