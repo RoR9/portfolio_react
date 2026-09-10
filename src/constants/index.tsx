@@ -64,7 +64,7 @@ export const projectItems = [
     title: "Avicola Săvinești",
     description:
       "Marketing site for a free-range poultry farm in Manasia, Ialomița. Present breeds, farm story, and direct-from-producer ordering — phone, email, and Messenger — with local delivery context for nearby cities.",
-    live: "https://avicola-savinesti.vercel.app/",
+    live: "https://avicola-savinesti.ro/",
     tech_stack: ["react", "next", "tailwind", "typescript"],
   },
 ];
